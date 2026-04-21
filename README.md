@@ -1,0 +1,1 @@
+# handmade_3types_diagnosis.html
