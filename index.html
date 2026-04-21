@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ハンドメイド販売 3タイプ診断 | あなたはどのタイプ？</title>
+<meta property="og:title" content="ハンドメイド販売 3タイプ診断">
+<meta property="og:description" content="あなたに合う「売り方」がわかる無料診断">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1c2c44;
+    --navy-light: #2a3d5c;
+    --beige: #f2ece5;
+    --beige-dark: #e8e0d5;
+    --dark-red: #660000;
+    --mauve: #936c80;
+    --mauve-soft: #b892a3;
+    --cream: #faf6f1;
+    --gold: #b8956a;
+    --shadow: 0 20px 60px rgba(28, 44, 68, 0.12);
+    --shadow-soft: 0 10px 30px rgba(28, 44, 68, 0.08);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html, body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--beige);
+    color: var(--navy);
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body {
+    background:
+      radial-gradient(at 20% 10%, rgba(147, 108, 128, 0.08) 0%, transparent 50%),
+      radial-gradient(at 80% 90%, rgba(184, 149, 106, 0.1) 0%, transparent 50%),
+      var(--beige);
+    background-attachment: fixed;
+  }
+
+  .serif {
+    font-family: 'Shippori Mincho', serif;
+  }
+
+  .italic-serif {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+  }
+
+  .container {
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 20px 20px 60px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* ===== Screens ===== */
+  .screen {
+    display: none;
+    animation: fadeIn 0.5s ease;
+  }
+  .screen.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== Intro ===== */
+  .intro {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .intro-frame {
+    background: var(--cream);
+    padding: 48px 28px 40px;
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    position: relative;
+    border: 1px solid rgba(184, 149, 106, 0.2);
+  }
+
+  .intro-frame::before,
+  .intro-frame::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid var(--gold);
+  }
+  .intro-frame::before {
+    top: 12px;
+    left: 12px;
+    border-right: none;
+    border-bottom: none;
+  }
+  .intro-frame::after {
+    bottom: 12px;
+    right: 12px;
+    border-left: none;
+    border-top: none;
+  }
+
+  .eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    color: var(--mauve);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .intro-sub {
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    color: var(--navy);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+
+  .intro-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+    color: var(--navy);
+    margin-bottom: 20px;
+  }
+
+  .intro-title .accent {
+    color: var(--dark-red);
+    font-size: 38px;
+  }
+
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 24px auto;
+    position: relative;
+  }
+  .divider::before,
+  .divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    transform: translateY(-50%);
+  }
+  .divider::before { left: -10px; }
+  .divider::after { right: -10px; }
+
+  .intro-desc {
+    font-size: 14px;
+    line-height: 2;
+    color: var(--navy-light);
+    margin-bottom: 28px;
+    text-align: left;
+    padding: 0 4px;
+  }
+
+  .type-badges {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 12px;
+    padding: 6px 14px;
+    border: 1px solid var(--mauve);
+    color: var(--mauve);
+    border-radius: 2px;
+    letter-spacing: 0.1em;
+  }
+
+  .meta {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 20px 0 28px;
+    font-size: 12px;
+    color: var(--mauve);
+    letter-spacing: 0.1em;
+  }
+  .meta span::before {
+    content: '◆';
+    margin-right: 6px;
+    color: var(--gold);
+    font-size: 8px;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--beige);
+    padding: 18px 48px;
+    border: none;
+    border-radius: 2px;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn:hover {
+    background: var(--dark-red);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 0, 0, 0.25);
+  }
+  .btn:active {
+    transform: translateY(0);
+  }
+
+  .btn-sub {
+    background: transparent;
+    color: var(--navy);
+    border: 1px solid var(--navy);
+    padding: 14px 32px;
+    font-size: 14px;
+    margin-top: 12px;
+  }
+  .btn-sub:hover {
+    background: var(--navy);
+    color: var(--beige);
+  }
+
+  /* ===== Quiz ===== */
+  .quiz-header {
+    margin-bottom: 32px;
+    padding-top: 20px;
+  }
+
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+  }
+
+  .q-number {
+    font-size: 32px;
+    color: var(--navy);
+    letter-spacing: 0.05em;
+  }
+  .q-number .slash {
+    color: var(--gold);
+    margin: 0 4px;
+  }
+  .q-number .total {
+    color: var(--mauve);
+    font-size: 22px;
+  }
+
+  .progress-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--mauve);
+    text-transform: uppercase;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: normal;
+  }
+
+  .progress-bar {
+    height: 2px;
+    background: rgba(147, 108, 128, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--mauve), var(--navy));
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .question-box {
+    background: var(--cream);
+    padding: 32px 24px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-soft);
+    border-radius: 2px;
+    position: relative;
+    border-left: 3px solid var(--dark-red);
+  }
+
+  .q-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--mauve);
+    margin-bottom: 12px;
+  }
+
+  .question-text {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--navy);
+    letter-spacing: 0.02em;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .option {
+    background: var(--cream);
+    border: 1px solid transparent;
+    padding: 20px 20px 20px 64px;
+    text-align: left;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--navy);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    border-radius: 2px;
+    box-shadow: var(--shadow-soft);
+    animation: slideUp 0.5s ease backwards;
+  }
+  .option:nth-child(1) { animation-delay: 0.1s; }
+  .option:nth-child(2) { animation-delay: 0.2s; }
+  .option:nth-child(3) { animation-delay: 0.3s; }
+
+  .option::before {
+    content: attr(data-letter);
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--mauve);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--mauve);
+    transition: all 0.3s ease;
+  }
+
+  .option:hover {
+    border-color: var(--navy);
+    transform: translateX(4px);
+    background: #fff;
+  }
+  .option:hover::before {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--beige);
+  }
+
+  .option.selected {
+    border-color: var(--dark-red);
+    background: #fff;
+  }
+  .option.selected::before {
+    background: var(--dark-red);
+    border-color: var(--dark-red);
+    color: var(--beige);
+  }
+
+  /* ===== Loading ===== */
+  .loading {
+    text-align: center;
+    padding: 80px 20px;
+  }
+  .loading-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 22px;
+    margin-bottom: 32px;
+    color: var(--navy);
+    letter-spacing: 0.1em;
+  }
+  .loading-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+  }
+  .loading-dots span {
+    width: 8px;
+    height: 8px;
+    background: var(--mauve);
+    border-radius: 50%;
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes pulse {
+    0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+    40% { opacity: 1; transform: scale(1.2); }
+  }
+
+  /* ===== Result ===== */
+  .result-intro {
+    text-align: center;
+    padding: 20px 0 24px;
+    animation: fadeIn 0.8s ease;
+  }
+  .result-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    letter-spacing: 0.25em;
+    color: var(--mauve);
+    margin-bottom: 8px;
+  }
+  .result-subtitle {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 14px;
+    color: var(--navy);
+    margin-bottom: 20px;
+    letter-spacing: 0.1em;
+  }
+
+  .result-card {
+    background: var(--cream);
+    padding: 40px 28px;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    position: relative;
+    border-radius: 2px;
+    animation: slideUp 1s ease 0.3s backwards;
+    border: 1px solid rgba(184, 149, 106, 0.2);
+  }
+
+  .type-icon-wrap {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .type-icon {
+    display: inline-block;
+    font-size: 48px;
+    margin-bottom: 8px;
+  }
+
+  .type-name {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 32px;
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .type-catchphrase {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 18px;
+    text-align: center;
+    color: var(--navy-light);
+    margin-bottom: 32px;
+    letter-spacing: 0.05em;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(184, 149, 106, 0.3);
+    position: relative;
+  }
+  .type-catchphrase::before {
+    content: '❝';
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--gold);
+    font-size: 24px;
+    margin-right: 6px;
+  }
+  .type-catchphrase::after {
+    content: '❞';
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--gold);
+    font-size: 24px;
+    margin-left: 6px;
+  }
+
+  .result-section {
+    margin-bottom: 28px;
+  }
+  .result-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--mauve);
+    margin-bottom: 4px;
+  }
+  .section-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 14px;
+    letter-spacing: 0.05em;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--beige-dark);
+  }
+
+  .section-list {
+    list-style: none;
+    padding: 0;
+  }
+  .section-list li {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--navy);
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 6px;
+  }
+  .section-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 10px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .warning-box {
+    background: var(--beige);
+    padding: 20px;
+    border-radius: 2px;
+    border-left: 3px solid var(--dark-red);
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--navy);
+  }
+  .warning-box .warn-label {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 700;
+    color: var(--dark-red);
+    font-size: 13px;
+    display: block;
+    margin-bottom: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .next-step {
+    background: var(--navy);
+    color: var(--beige);
+    padding: 24px 20px;
+    border-radius: 2px;
+    text-align: center;
+  }
+  .next-step .ns-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    color: var(--mauve-soft);
+    margin-bottom: 10px;
+  }
+  .next-step .ns-text {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: 500;
+  }
+
+  /* ===== Type balance ===== */
+  .balance {
+    background: var(--cream);
+    padding: 24px 20px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-soft);
+    border-radius: 2px;
+  }
+  .balance-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 16px;
+    color: var(--navy);
+    letter-spacing: 0.05em;
+  }
+  .balance-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+  }
+  .balance-label {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 12px;
+    width: 100px;
+    color: var(--navy);
+    flex-shrink: 0;
+  }
+  .balance-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--beige-dark);
+    position: relative;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .balance-fill {
+    height: 100%;
+    background: var(--mauve);
+    width: 0%;
+    transition: width 1s ease;
+    border-radius: 3px;
+  }
+  .balance-fill.top {
+    background: var(--dark-red);
+  }
+  .balance-pct {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    width: 36px;
+    text-align: right;
+    color: var(--navy-light);
+  }
+
+  /* ===== CTA ===== */
+  .cta-box {
+    background: var(--cream);
+    padding: 28px 24px;
+    text-align: center;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-soft);
+    border-radius: 2px;
+    border: 1px dashed var(--mauve);
+  }
+  .cta-box p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+  .cta-box .highlight {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 15px;
+    color: var(--dark-red);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .btn-row .btn {
+    flex: 1;
+    padding: 14px 20px;
+    font-size: 13px;
+  }
+
+  /* ===== Footer ===== */
+  .footer {
+    text-align: center;
+    padding: 32px 0 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--mauve);
+  }
+
+  /* Mobile tweaks */
+  @media (max-width: 420px) {
+    .intro-title { font-size: 26px; }
+    .intro-title .accent { font-size: 32px; }
+    .type-name { font-size: 26px; }
+    .question-text { font-size: 17px; }
+    .option { font-size: 14px; padding: 18px 16px 18px 60px; }
+    .intro-frame { padding: 40px 20px 32px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ==================== INTRO ==================== -->
+  <div id="intro" class="screen active">
+    <div class="intro">
+      <div class="intro-frame">
+        <div class="eyebrow">Handmade Seller Diagnosis</div>
+        <div class="divider"></div>
+        <h1 class="intro-title">
+          あなたは、<br>
+          <span class="accent">どのタイプ？</span>
+        </h1>
+        <div class="intro-sub">ハンドメイド販売『3つの売り方タイプ診断』</div>
+
+        <div class="type-badges">
+          <span class="badge">インフルエンサー</span>
+          <span class="badge">サポート</span>
+          <span class="badge">マーケター</span>
+        </div>
+
+        <p class="intro-desc">
+          同じように頑張っているのに、売れる人と売れない人。<br>
+          その差は、才能じゃなく「売り方のタイプ」が合っているかどうか。<br><br>
+          この診断で、あなたに合った<b>最短ルート</b>が見つかります。
+        </p>
+
+        <div class="meta">
+          <span>全10問</span>
+          <span>約2分</span>
+        </div>
+
+        <button class="btn" onclick="startQuiz()">診断を始める</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== QUIZ ==================== -->
+  <div id="quiz" class="screen">
+    <div class="quiz-header">
+      <div class="progress-info">
+        <div class="q-number">
+          <span id="current-q">1</span><span class="slash">/</span><span class="total">10</span>
+        </div>
+        <div class="progress-label">Question</div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <div class="question-box">
+      <div class="q-label">Q</div>
+      <div class="question-text" id="question-text"></div>
+    </div>
+
+    <div class="options" id="options"></div>
+  </div>
+
+  <!-- ==================== LOADING ==================== -->
+  <div id="loading" class="screen">
+    <div class="loading">
+      <div class="loading-title">あなたのタイプを<br>診断しています...</div>
+      <div class="loading-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== RESULT ==================== -->
+  <div id="result" class="screen">
+    <div class="result-intro">
+      <div class="result-label">Your Type</div>
+      <div class="result-subtitle">あなたの「売り方タイプ」は</div>
+    </div>
+
+    <div class="result-card">
+      <div class="type-icon-wrap">
+        <div class="type-icon" id="type-icon"></div>
+      </div>
+      <h2 class="type-name" id="type-name"></h2>
+      <div class="type-catchphrase" id="type-catchphrase"></div>
+
+      <div class="result-section">
+        <div class="section-label">Strengths</div>
+        <div class="section-title">あなたの強み</div>
+        <ul class="section-list" id="strengths"></ul>
+      </div>
+
+      <div class="result-section">
+        <div class="section-label">Good At</div>
+        <div class="section-title">向いている売り方</div>
+        <ul class="section-list" id="goodat"></ul>
+      </div>
+
+      <div class="result-section">
+        <div class="section-label">Caution</div>
+        <div class="section-title">気をつけたい落とし穴</div>
+        <div class="warning-box" id="warning"></div>
+      </div>
+
+      <div class="result-section">
+        <div class="next-step">
+          <div class="ns-label">Next Step</div>
+          <div class="ns-text" id="next-step"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="balance">
+      <div class="balance-title">あなたの3タイプバランス</div>
+      <div id="balance-bars"></div>
+    </div>
+
+    <div class="cta-box">
+      <span class="highlight">自分に合う売り方で、もっと伸ばしたい！</span>
+      <p>
+        Instagramの<br>
+        コメントに『<b>タイプ</b>』と送ってね 🏷<br>
+        もっと詳しい活用法をお届けします
+      </p>
+      <div class="btn-row">
+        <button class="btn" onclick="shareResult()">結果をシェア</button>
+        <button class="btn btn-sub" onclick="restart()">もう一度</button>
+      </div>
+    </div>
+
+    <div class="footer">
+      © Bright Up × REBEL MUSES CRAFT
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ============ Questions ============
+  const questions = [
+    {
+      q: "新しく商品を作ったとき、最初にしたくなるのは？",
+      options: [
+        { text: "世界観が伝わる写真や動画を撮る", type: "I" },
+        { text: "応援してくれてるお客様にそっとお知らせする", type: "S" },
+        { text: "いくら売れそうか、数字をざっくり試算する", type: "M" }
+      ]
+    },
+    {
+      q: "他の作家さんのSNSを見るとき、つい注目してしまうのは？",
+      options: [
+        { text: "世界観・ビジュアル・投稿の雰囲気", type: "I" },
+        { text: "お客様とのやりとり・コメント欄", type: "S" },
+        { text: "フォロワーの伸び方・販売導線の作り方", type: "M" }
+      ]
+    },
+    {
+      q: "お客様にいちばん言われたら嬉しい言葉は？",
+      options: [
+        { text: "「世界観が大好きです」", type: "I" },
+        { text: "「あなたから買いたいです」", type: "S" },
+        { text: "「また買いたくなる仕組みですね」", type: "M" }
+      ]
+    },
+    {
+      q: "売上が落ち込んだとき、最初に手を付けるのは？",
+      options: [
+        { text: "写真・投稿のクオリティや世界観の見直し", type: "I" },
+        { text: "お客様へのヒアリング・アンケート", type: "S" },
+        { text: "数字・データの徹底分析", type: "M" }
+      ]
+    },
+    {
+      q: "一日の中で、いちばんワクワクする作業は？",
+      options: [
+        { text: "撮影・編集・ブランディングを考える時間", type: "I" },
+        { text: "お客様への返信・お礼メッセージを書く時間", type: "S" },
+        { text: "広告運用・数値改善を回す時間", type: "M" }
+      ]
+    },
+    {
+      q: "続けるのがしんどくなりやすい作業は？",
+      options: [
+        { text: "Excel・スプレッドシートでの数字管理", type: "I" },
+        { text: "広告運用・ロジカルな戦略設計", type: "S" },
+        { text: "毎日のSNS投稿・動画撮影", type: "M" }
+      ]
+    },
+    {
+      q: "自分のいちばんの強みだと感じるのは？",
+      options: [
+        { text: "感性・センス・美意識", type: "I" },
+        { text: "思いやり・誠実さ・丁寧さ", type: "S" },
+        { text: "論理性・分析力・再現性", type: "M" }
+      ]
+    },
+    {
+      q: "今のあなたに、売上を伸ばすために必要だと感じるのは？",
+      options: [
+        { text: "世界観の強化・発信力アップ", type: "I" },
+        { text: "お客様との関係性・信頼の積み上げ", type: "S" },
+        { text: "戦略・仕組み化・広告の最適化", type: "M" }
+      ]
+    },
+    {
+      q: "ファンの人から、こう言われたいなぁという言葉は？",
+      options: [
+        { text: "「〇〇さんの世界観、本当に好き」", type: "I" },
+        { text: "「〇〇さんだから相談したい」", type: "S" },
+        { text: "「〇〇さんの売り方、勉強になる」", type: "M" }
+      ]
+    },
+    {
+      q: "自分を一言で表すとしたら、いちばん近いのは？",
+      options: [
+        { text: "クリエイター・アーティスト", type: "I" },
+        { text: "おもてなし人・相談役", type: "S" },
+        { text: "戦略家・ビジネスパーソン", type: "M" }
+      ]
+    }
+  ];
+
+  // ============ Types Data ============
+  const typeData = {
+    I: {
+      icon: "⭐️",
+      name: "インフルエンサータイプ",
+      catchphrase: "世界観とファン化で売る",
+      color: "#936c80",
+      strengths: [
+        "感性とセンスで人を惹きつける力",
+        "憧れや物語を形にするのが得意",
+        "SNS・ビジュアル発信が苦にならない"
+      ],
+      goodat: [
+        "世界観・ストーリーを軸にしたブランディング",
+        "SNSでの発信・ファンコミュニティ形成",
+        "「欲しくなる」空気感の演出"
+      ],
+      warning: {
+        label: "発信だけで終わっていませんか？",
+        text: "素敵な世界観は作れているのに、「買う理由・買う動線」が弱くなりがち。ビジュアルと販売導線をちゃんとつなげると、ファンが『買う』行動に変わります。"
+      },
+      nextStep: "世界観 × 販売導線をつなぐ\n「ストーリー→購入」の動線設計を学ぼう"
+    },
+    S: {
+      icon: "💌",
+      name: "サポートタイプ",
+      catchphrase: "信頼と関係性で売る",
+      color: "#660000",
+      strengths: [
+        "一人ひとりと向き合う丁寧さ・誠実さ",
+        "お客様の気持ちを汲み取る力",
+        "信頼と安心感を積み上げる力"
+      ],
+      goodat: [
+        "リピーター・口コミで伸ばすスタイル",
+        "丁寧なやりとりによるファン育成",
+        "小さなコミュニティを深く育てる"
+      ],
+      warning: {
+        label: "個別対応に時間を取られすぎていませんか？",
+        text: "1対1を大切にするあまり、新規が後回しになったり、値上げや拡大に踏み込めないことが。関係性を『仕組み』に変えていけると、無理なくスケールできます。"
+      },
+      nextStep: "1対1の関係性を「仕組み」に変えて\nリピート率を再現する設計を作ろう"
+    },
+    M: {
+      icon: "📊",
+      name: "マーケタータイプ",
+      catchphrase: "戦略と仕組みで売る",
+      color: "#1c2c44",
+      strengths: [
+        "データと論理で意思決定できる力",
+        "再現性のある売上を積み上げる力",
+        "数字を味方にできる冷静さ"
+      ],
+      goodat: [
+        "広告運用・販売導線設計",
+        "仕組み化・自動化による拡大",
+        "数値をもとにした改善サイクル"
+      ],
+      warning: {
+        label: "数字だけ追っていませんか？",
+        text: "戦略は立てられても、ブランドの「世界観」や「人の温度」が抜けてしまいがち。仕組みの土台に『感情が動く瞬間』を一つ加えると、数字がさらに伸びます。"
+      },
+      nextStep: "戦略の土台に「世界観」または\n「お客様との関係性」を一つ加えよう"
+    }
+  };
+
+  // ============ State ============
+  let currentQuestion = 0;
+  let answers = [];
+  let scores = { I: 0, S: 0, M: 0 };
+
+  // ============ Functions ============
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function startQuiz() {
+    currentQuestion = 0;
+    answers = [];
+    scores = { I: 0, S: 0, M: 0 };
+    showScreen('quiz');
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const q = questions[currentQuestion];
+    document.getElementById('current-q').textContent = currentQuestion + 1;
+    document.getElementById('question-text').textContent = q.q;
+
+    const progress = ((currentQuestion) / questions.length) * 100;
+    document.getElementById('progress-fill').style.width = progress + '%';
+
+    const optionsWrap = document.getElementById('options');
+    optionsWrap.innerHTML = '';
+    const letters = ['A', 'B', 'C'];
+
+    q.options.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'option';
+      btn.setAttribute('data-letter', letters[idx]);
+      btn.textContent = opt.text;
+      btn.onclick = () => selectOption(opt.type, btn);
+      optionsWrap.appendChild(btn);
+    });
+  }
+
+  function selectOption(type, btn) {
+    btn.classList.add('selected');
+    document.querySelectorAll('.option').forEach(el => {
+      if (el !== btn) el.style.opacity = '0.4';
+      el.style.pointerEvents = 'none';
+    });
+
+    scores[type]++;
+    answers.push(type);
+
+    setTimeout(() => {
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }, 500);
+  }
+
+  function showResult() {
+    const progress = 100;
+    document.getElementById('progress-fill').style.width = progress + '%';
+    showScreen('loading');
+
+    setTimeout(() => {
+      // Determine top type
+      let topType = 'I';
+      let maxScore = -1;
+      for (const t of ['I', 'S', 'M']) {
+        if (scores[t] > maxScore) {
+          maxScore = scores[t];
+          topType = t;
+        }
+      }
+
+      const data = typeData[topType];
+
+      document.getElementById('type-icon').textContent = data.icon;
+      document.getElementById('type-name').textContent = data.name;
+      document.getElementById('type-name').style.color = data.color;
+      document.getElementById('type-catchphrase').textContent = data.catchphrase;
+
+      document.getElementById('strengths').innerHTML =
+        data.strengths.map(s => `<li>${s}</li>`).join('');
+      document.getElementById('goodat').innerHTML =
+        data.goodat.map(s => `<li>${s}</li>`).join('');
+
+      document.getElementById('warning').innerHTML =
+        `<span class="warn-label">⚠ ${data.warning.label}</span>${data.warning.text}`;
+
+      document.getElementById('next-step').textContent = data.nextStep;
+
+      // Balance bars
+      const balanceWrap = document.getElementById('balance-bars');
+      const total = scores.I + scores.S + scores.M;
+      const typeOrder = [
+        { key: 'I', label: 'インフルエンサー' },
+        { key: 'S', label: 'サポート' },
+        { key: 'M', label: 'マーケター' }
+      ];
+
+      balanceWrap.innerHTML = typeOrder.map(t => {
+        const pct = Math.round((scores[t.key] / total) * 100);
+        const isTop = t.key === topType;
+        return `
+          <div class="balance-row">
+            <div class="balance-label">${t.label}</div>
+            <div class="balance-bar">
+              <div class="balance-fill ${isTop ? 'top' : ''}" data-pct="${pct}"></div>
+            </div>
+            <div class="balance-pct">${pct}%</div>
+          </div>
+        `;
+      }).join('');
+
+      showScreen('result');
+
+      // Animate bars
+      setTimeout(() => {
+        document.querySelectorAll('.balance-fill').forEach(el => {
+          el.style.width = el.dataset.pct + '%';
+        });
+      }, 400);
+    }, 1800);
+  }
+
+  function restart() {
+    startQuiz();
+  }
+
+  function shareResult() {
+    const typeName = document.getElementById('type-name').textContent;
+    const catchphrase = document.getElementById('type-catchphrase').textContent;
+    const text = `私の売り方タイプは【${typeName}】✨\n「${catchphrase}」\n\nあなたのタイプも診断してみてね！`;
+
+    if (navigator.share) {
+      navigator.share({
+        title: 'ハンドメイド販売 3タイプ診断',
+        text: text,
+        url: window.location.href
+      }).catch(() => {});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(text + '\n' + window.location.href).then(() => {
+        alert('結果をコピーしました！\nInstagramのストーリーなどに貼り付けてシェアしてね');
+      });
+    } else {
+      alert('シェア機能が使えません。スクショで保存してください📸');
+    }
+  }
+</script>
+
+</body>
+</html>
